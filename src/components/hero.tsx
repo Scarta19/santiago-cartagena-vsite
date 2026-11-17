@@ -9,16 +9,15 @@ export function Hero() {
       <div aria-hidden className="glow pointer-events-none absolute inset-0" />
       <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-[1.15fr_0.85fr]">
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted sm:text-xs">
-            {site.role} · {site.focus.split(",")[0]} &amp; risk · {site.location}
-          </p>
-          <h1 className="mt-6 font-display text-[2.6rem] leading-[1.02] font-semibold tracking-tight text-fg sm:text-6xl lg:text-7xl">
-            Santiago
-            <br />
-            Cartagena<span className="text-accent">.</span>
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent sm:text-xs">{site.eyebrow}</p>
+          <h1 className="mt-6 font-display text-[2.4rem] leading-[1.04] font-semibold tracking-tight text-fg sm:text-6xl">
+            {site.headline}
           </h1>
-          <p className="mt-6 max-w-xl text-xl font-medium leading-snug text-fg sm:text-2xl">{site.headline}</p>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">{site.subheadline}</p>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">{site.subheadline}</p>
+          <p className="mt-5 text-sm text-fg">
+            <span className="font-semibold">Santiago Cartagena</span>
+            <span className="text-muted"> · {site.role} · {site.location}</span>
+          </p>
 
           <div className="mt-9 flex flex-wrap gap-3">
             <TrackedLink
@@ -26,7 +25,7 @@ export function Hero() {
               href="#contact"
               className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-[#0b0b10] transition-transform hover:-translate-y-0.5"
             >
-              Discuss an AI project
+              Book a 30-min call
             </TrackedLink>
             <TrackedLink
               event="cta_hero_hire"
@@ -73,6 +72,20 @@ export function Hero() {
         <div className="mx-auto w-full max-w-md lg:max-w-none">
           <DecisionFlow />
         </div>
+      </div>
+
+      <div className="relative mx-auto mt-16 max-w-6xl px-4 sm:px-6">
+        <dl
+          aria-label="Bottom line"
+          className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-3"
+        >
+          {site.bottomLine.map((b) => (
+            <div key={b.k} className="bg-bg/90 p-6 backdrop-blur">
+              <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">{b.k}</dt>
+              <dd className="mt-2 text-sm leading-relaxed text-fg/90">{b.v}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

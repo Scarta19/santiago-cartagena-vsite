@@ -8,6 +8,8 @@ export type Status = "In development" | "In design" | "Planned" | "Shipped";
 export interface Service {
   id: string;
   title: string;
+  /** Bottom line: the business result, stated first. */
+  outcome: string;
   problem: string;
   deliverables: string[];
   forWho: string;
@@ -26,6 +28,8 @@ export interface Role {
 export interface Project {
   slug: string;
   title: string;
+  /** Bottom line: what this project proves to a buyer. */
+  proves: string;
   tagline: string;
   status: Status;
   summary: string;
@@ -56,9 +60,15 @@ export const site = {
   title: "Santiago Cartagena — AI & ML Engineer for fraud and risk systems",
   description:
     "Production AI for fraud, risk and high-stakes decisions: ML models, data pipelines and AI agents that decide who to trust and keep working after launch. ML engineering since 2021 across fintech, ad-tech and marketplaces.",
-  headline: "Production AI for decisions that cost money when they're wrong.",
+  eyebrow: "AI risk engineering · fintech, marketplaces & ad-tech",
+  headline: "Stop losing money to fraud and bad automated decisions.",
   subheadline:
-    "I design and ship the ML models, data pipelines and AI agents behind fraud detection, risk scoring and automated decisions, and I keep them reliable after launch.",
+    "I build production AI that scores risk, catches fraud and decides who to trust, with thresholds set by what a wrong decision costs you, and monitoring that keeps it working after launch.",
+  bottomLine: [
+    { k: "What you get", v: "A risk model or AI agent running in production, measured in business cost, not just accuracy." },
+    { k: "Best fit", v: "Companies handling payments, sign-ups or ad conversions at volume, where fraud or false declines already cost real money." },
+    { k: "First step", v: "A 30-minute call. You leave with a clear yes or no on whether ML will pay off for your case." },
+  ],
   contact: {
     email: "santwhm@gmail.com",
     github: "https://github.com/Scarta19",
@@ -79,7 +89,7 @@ export const proof: { label: string; value: string }[] = [
 ];
 
 export const about = {
-  title: "Statistics first. Production always.",
+  title: "ML in production since 2021: fraud, risk and ad-tech, at international companies.",
   paragraphs: [
     "I'm a Mathematical Engineer from Universidad EAFIT who has spent his career on machine learning that has to hold up in production: fraud and phishing detection at FreshBooks, ad-tech models at Mercado Libre's scale, anti-money-laundering research at FinCrime Dynamics, and now leading the technical side of conversion-risk intelligence at AdAction.",
     "Fraud and risk problems are adversarial, heavily imbalanced, and expensive to get wrong. Labels arrive late, attackers adapt, and a model is only as good as the decision threshold and monitoring around it. That is the work I specialize in, and it is where generic AI tooling breaks down.",
@@ -91,6 +101,7 @@ export const services: Service[] = [
   {
     id: "risk",
     title: "Fraud & risk intelligence",
+    outcome: "Catch more fraud while blocking fewer good customers.",
     problem:
       "Rules written by hand stop scaling: fraud slips through, good customers get blocked, and analysts drown in alerts.",
     deliverables: [
@@ -104,6 +115,7 @@ export const services: Service[] = [
   {
     id: "mlops",
     title: "Production ML & MLOps",
+    outcome: "Ship models faster and know the moment they degrade.",
     problem:
       "Models that work in a notebook but are slow to ship, hard to reproduce and silent when they degrade.",
     deliverables: [
@@ -117,6 +129,7 @@ export const services: Service[] = [
   {
     id: "agents",
     title: "AI agents for risk operations",
+    outcome: "Analysts review cases faster, with evidence already gathered.",
     problem:
       "Investigations and reviews are manual, slow and inconsistent, and a generic chatbot doesn't know your data.",
     deliverables: [
@@ -130,6 +143,7 @@ export const services: Service[] = [
   {
     id: "architecture",
     title: "AI architecture & integration",
+    outcome: "A plan you can defend before you spend on building.",
     problem:
       "You know AI should be part of a decision process but not how to design it, measure it or connect it to existing systems.",
     deliverables: [
@@ -139,6 +153,33 @@ export const services: Service[] = [
       "Experiment design so you can prove the impact",
     ],
     forWho: "Founders and engineering leaders planning their first serious ML or AI system.",
+  },
+];
+
+export const engagements: { step: string; name: string; outcome: string; detail: string }[] = [
+  {
+    step: "01",
+    name: "Discovery call",
+    outcome: "A clear yes or no on whether ML will pay off for your problem.",
+    detail: "30 minutes, free. We look at the decision you want to automate, your data and what errors cost you.",
+  },
+  {
+    step: "02",
+    name: "Risk ML review",
+    outcome: "A written diagnosis and a roadmap with the highest-return fixes first.",
+    detail: "Fixed scope, fixed price. Data, labels, current rules, evaluation and monitoring, reviewed end to end.",
+  },
+  {
+    step: "03",
+    name: "Build sprint",
+    outcome: "A working model, agent or pipeline in production, run in shadow mode before it decides.",
+    detail: "Scoped deliverables with weekly demos. Your team owns the code and the documentation at handover.",
+  },
+  {
+    step: "04",
+    name: "Ongoing advisory",
+    outcome: "A senior ML engineer on call without a full-time hire.",
+    detail: "Monthly retainer for monitoring reviews, model updates, architecture decisions and team support.",
   },
 ];
 
@@ -222,6 +263,7 @@ export const projects: Project[] = [
   {
     slug: "risk-decisioning-engine",
     title: "Risk Decisioning Engine",
+    proves: "Fraud ML from raw events to a cost-optimized decision behind an API.",
     tagline: "Open-source fraud scoring and decision service",
     status: "In development",
     summary:
@@ -238,6 +280,7 @@ export const projects: Project[] = [
   {
     slug: "fraud-triage-agent",
     title: "Fraud Case Triage Agent",
+    proves: "AI agents that are measured, bounded and tied to real risk operations.",
     tagline: "An LLM agent that prepares the review, an analyst decides",
     status: "In design",
     summary:
@@ -252,6 +295,7 @@ export const projects: Project[] = [
   {
     slug: "delayed-label-monitoring",
     title: "Monitoring Under Delayed Labels",
+    proves: "Keeping fraud models healthy when the truth arrives weeks later.",
     tagline: "Knowing a fraud model is drifting before the chargebacks arrive",
     status: "Planned",
     summary:

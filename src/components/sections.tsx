@@ -1,5 +1,6 @@
 import {
   about,
+  engagements,
   experience,
   honors,
   moat,
@@ -17,7 +18,7 @@ import { TrackedLink } from "./tracked-link";
 
 export function About() {
   return (
-    <Section id="about" index="01" label="About" title={about.title}>
+    <Section id="about" index="03" label="Why me" title={about.title}>
       <div className="grid gap-10 lg:grid-cols-[1fr_320px]">
         <div className="space-y-5 text-base leading-relaxed text-muted sm:text-lg">
           {about.paragraphs.map((p) => (
@@ -64,18 +65,22 @@ export function Services() {
   return (
     <Section
       id="services"
-      index="02"
-      label="Services"
-      title="AI systems for decisions that carry risk."
-      intro="Focused engagements for companies that need fraud, risk and decision systems built to production standard. Independent work, separate from any employer."
+      index="01"
+      label="Outcomes"
+      title="Fewer losses. Fewer false declines. Decisions you can explain."
+      intro="Four focused services for companies where an automated decision carries real cost. Each one starts from the business result and works back to the model. Independent work, separate from any employer."
     >
       <div className="grid gap-4 md:grid-cols-2">
         {services.map((s, k) => (
           <Reveal key={s.id} delay={k * 0.05}>
             <article className="group h-full rounded-2xl border border-line bg-elev p-7 transition-colors hover:border-line-strong">
               <p className="font-mono text-[11px] text-accent">0{k + 1}</p>
-              <h3 className="mt-3 font-display text-xl font-semibold tracking-tight">{s.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted">{s.problem}</p>
+              <h3 className="mt-3 font-display text-xl font-semibold tracking-tight text-fg">{s.outcome}</h3>
+              <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">{s.title}</p>
+              <p className="mt-4 text-sm leading-relaxed text-muted">
+                <span className="text-fg/80">The problem: </span>
+                {s.problem}
+              </p>
               <ul className="mt-5 space-y-2.5 text-sm text-fg/90">
                 {s.deliverables.map((d) => (
                   <li key={d} className="flex gap-2.5">
@@ -98,9 +103,46 @@ export function Services() {
   );
 }
 
+export function Engagement() {
+  return (
+    <Section
+      id="engagement"
+      index="02"
+      label="How we work"
+      title="Start small, prove value, then scale."
+      intro="Every engagement starts with a clear outcome and a fixed scope, so you know what you get before you commit to more."
+    >
+      <ol className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {engagements.map((e, k) => (
+          <Reveal key={e.step} delay={k * 0.05}>
+            <li className="relative flex h-full flex-col rounded-2xl border border-line bg-elev p-6">
+              <span className="font-mono text-[11px] text-accent">{e.step}</span>
+              <h3 className="mt-3 font-display text-lg font-semibold tracking-tight">{e.name}</h3>
+              <p className="mt-3 text-sm font-medium leading-relaxed text-fg">{e.outcome}</p>
+              <p className="mt-3 text-sm leading-relaxed text-muted">{e.detail}</p>
+            </li>
+          </Reveal>
+        ))}
+      </ol>
+      <Reveal>
+        <div className="mt-10 flex flex-col items-start gap-4 rounded-2xl border border-accent/40 bg-accent-soft p-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-fg sm:text-base">Not sure where to start? The discovery call is free and you leave with a clear answer.</p>
+          <TrackedLink
+            event="cta_engagement_call"
+            href="#contact"
+            className="shrink-0 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-[#0b0b10]"
+          >
+            Book a 30-min call
+          </TrackedLink>
+        </div>
+      </Reveal>
+    </Section>
+  );
+}
+
 export function Moat() {
   return (
-    <Section id="approach" index="03" label="Why it matters" title={moat.title} intro={moat.intro}>
+    <Section id="approach" index="04" label="What makes it different" title={moat.title} intro={moat.intro}>
       <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
         {moat.points.map((p, k) => (
           <Reveal key={p.title} delay={k * 0.05} className="bg-bg">
@@ -117,7 +159,7 @@ export function Moat() {
 
 export function Experience() {
   return (
-    <Section id="experience" index="04" label="Experience" title="Where I've built.">
+    <Section id="experience" index="05" label="Experience" title="Fraud, risk and ad-tech ML, shipped inside companies that operate at scale.">
       <Reveal>
         <ExperienceTabs roles={experience} />
       </Reveal>
@@ -136,10 +178,10 @@ export function Work() {
   return (
     <Section
       id="work"
-      index="05"
+      index="06"
       label="Work"
-      title="Public projects, built in the open."
-      intro="Open-source systems that show how I approach fraud and risk problems. Each one is labeled with its real status, and they use public or synthetic data only."
+      title="Proof you can open and run, not just read about."
+      intro="Open-source systems that show exactly how I approach fraud and risk. Each one shows its real status and uses public or synthetic data only."
     >
       <div className="grid gap-4 lg:grid-cols-3">
         {projects.map((p, k) => (
@@ -150,7 +192,11 @@ export function Work() {
                 <span className="font-mono text-[11px] text-subtle">0{k + 1}</span>
               </div>
               <h3 className="mt-5 font-display text-xl font-semibold tracking-tight">{p.title}</h3>
-              <p className="mt-1 text-sm text-accent/90">{p.tagline}</p>
+              <p className="mt-2 text-sm font-medium text-fg">
+                <span className="text-accent">Proves: </span>
+                {p.proves}
+              </p>
+              <p className="mt-1 text-sm text-subtle">{p.tagline}</p>
               <p className="mt-4 text-sm leading-relaxed text-muted">{p.summary}</p>
               <ul className="mt-5 space-y-2 text-sm text-fg/90">
                 {p.scope.map((s) => (
@@ -210,7 +256,7 @@ export function Work() {
 
 export function Stack() {
   return (
-    <Section id="stack" index="06" label="Stack" title="Tools I build with.">
+    <Section id="stack" index="07" label="Stack" title="Production tooling across GCP, AWS and modern AI.">
       <div className="divide-y divide-line border-y border-line">
         {stack.map((g) => (
           <Reveal key={g.group}>
@@ -241,10 +287,10 @@ export function Contact() {
   return (
     <Section
       id="contact"
-      index="07"
+      index="08"
       label="Contact"
-      title="Let's build something that holds up."
-      intro="Two ways to work together. Pick the one that fits, and I'll reply within two business days."
+      title="Tell me the decision you need to automate, and what a wrong one costs."
+      intro="I reply within two business days with a straight answer on whether I can help. Two ways to work together:"
     >
       <div className="grid gap-4 md:grid-cols-2">
         <Reveal>

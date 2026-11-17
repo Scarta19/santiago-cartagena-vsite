@@ -4,7 +4,8 @@ import { useState } from "react";
 import { TrackedLink } from "./tracked-link";
 
 const links = [
-  { href: "#services", label: "Services" },
+  { href: "#services", label: "Outcomes" },
+  { href: "#engagement", label: "How we work" },
   { href: "#experience", label: "Experience" },
   { href: "#work", label: "Work" },
   { href: "#stack", label: "Stack" },
@@ -34,7 +35,7 @@ export function Nav() {
             href="#contact"
             className="hidden rounded-full bg-fg px-4 py-2 text-sm font-medium text-bg transition-opacity hover:opacity-90 sm:inline-block"
           >
-            Discuss a project
+            Book a call
           </TrackedLink>
           <button
             type="button"

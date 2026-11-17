@@ -1,7 +1,7 @@
 import { Hero } from "@/components/hero";
 import { Nav } from "@/components/nav";
 import { ProofBar } from "@/components/proof-bar";
-import { About, Contact, Experience, Footer, Moat, Services, Stack, Work } from "@/components/sections";
+import { About, Contact, Engagement, Experience, Footer, Moat, Services, Stack, Work } from "@/components/sections";
 import { experience, site } from "@/content/site";
 
 const jsonLd = {
@@ -27,8 +27,9 @@ export default function Home() {
       <main id="main">
         <Hero />
         <ProofBar />
-        <About />
         <Services />
+        <Engagement />
+        <About />
         <Moat />
         <Experience />
         <Work />
