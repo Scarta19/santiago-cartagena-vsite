@@ -224,7 +224,7 @@ export function Work() {
                     rel="noreferrer"
                     className="mt-5 inline-block text-sm font-medium text-fg underline decoration-line-strong underline-offset-4 hover:decoration-accent"
                   >
-                    Follow on GitHub →
+                    {p.status === "Shipped" ? "View code and results →" : "Follow on GitHub →"}
                   </TrackedLink>
                 ) : null}
               </div>
