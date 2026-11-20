@@ -298,12 +298,17 @@ export const projects: Project[] = [
     slug: "delayed-label-monitoring",
     title: "Monitoring Under Delayed Labels",
     proves: "Keeping fraud models healthy when the truth arrives weeks later.",
-    tagline: "Knowing a fraud model is drifting before the chargebacks arrive",
-    status: "Planned",
+    tagline: "Knowing a fraud model is failing before the chargebacks arrive",
+    status: "Shipped",
     summary:
-      "A small library and write-up on monitoring risk models when ground truth arrives weeks late: population stability, score drift, calibration over time and alerting.",
-    scope: ["Population stability and score-drift metrics", "Calibration tracking", "Alert rules and a technical article"],
-    stack: ["Python", "SQL", "dbt"],
+      "A monitoring study on the decisioning engine: four post-launch incidents, labels that arrive late or never (declines), and five daily monitors. Across 8 synthetic worlds, an age-adjusted early-label test caught an account-takeover wave in 8 of 8 (median day 12) versus about day 66 when waiting for matured labels, and flagged a partner campaign wrongly declined in 7 of 8. Input-drift PSI flagged only 1 of 24 incident runs. Synthetic data; limits and false alarms are documented in the README.",
+    scope: [
+      "Drift scenarios with an exact no-change counterfactual",
+      "Decision-dependent label delays: reviews in a day, chargebacks in weeks, declines never",
+      "Monitors compared on detection lag, false alarms and money lost before the alarm",
+    ],
+    stack: ["Python", "LightGBM", "Statistics", "Monitoring"],
+    href: "https://github.com/Scarta19/risk-decisioning-engine#monitoring-when-labels-arrive-weeks-late",
   },
 ];
 
