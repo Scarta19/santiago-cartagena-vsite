@@ -283,15 +283,16 @@ export const projects: Project[] = [
     title: "Fraud Case Triage Agent",
     proves: "AI agents that are measured, bounded and tied to real risk operations.",
     tagline: "An LLM agent that prepares the review, an analyst decides",
-    status: "In design",
+    status: "Shipped",
     summary:
-      "Takes the cases a risk model sends to manual review, gathers evidence with tool calls on scores and features, and writes a summary and a recommended action, measured against labeled outcomes.",
+      "A Claude agent that takes the cases the risk model sends to manual review, gathers evidence with read-only tool calls and recommends approve, decline or escalate. On 60 synthetic review cases it automated 15 (all correct, no fraud approved) and escalated 45, lowering cost per case from $6.03 to $5.03 plus $0.05 of LLM cost. Letting the model decide alone cost $13.67 per case. A small sample with illustrative costs; limits are documented in the README.",
     scope: [
-      "Tool calling over the decisioning engine",
-      "Evaluation set with accuracy, cost and latency per case",
-      "Guardrails and documented failure modes",
+      "Read-only tools over the decisioning engine: case summary, entity history, similar resolved cases",
+      "Fails closed: refusals, errors and invalid answers go to the analyst",
+      "Evaluation against escalate-all, model-only and an oracle, with LLM cost and latency per case",
     ],
-    stack: ["Python", "LLM APIs", "Tool calling", "Evaluations"],
+    stack: ["Python", "Claude API", "Tool calling", "Evaluations"],
+    href: "https://github.com/Scarta19/risk-decisioning-engine#triage-agent-for-the-review-lane",
   },
   {
     slug: "delayed-label-monitoring",
